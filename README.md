@@ -1,11 +1,24 @@
-# Product and Cart Static Code Demo
+# online-greengrocery
 
-This is one of the companion repos to the Vue.js course on the freeCodeCamp YouTube channel.
-You can see the different stages of development by checking out the other branches.
+## Project setup
+```
+npm install
+```
 
-**Other Repos from this Tutorial Series**
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-- [Static files from initial lessons](https://github.com/gwenf/vue3-fcc-course-static-code)
-- [Vue CLI Product Cart Demo](https://github.com/gwenf/vue3-fcc-course-vue-cli-product-cart-demo)
+### Compiles and minifies for production
+```
+npm run build
+```
 
-Special thanks to [TheJaredWilcurt](https://github.com/TheJaredWilcurt) for helping out with the initial static code and doing pretty much all of the styling.
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

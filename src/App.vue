@@ -19,7 +19,7 @@
   </header>
   <router-view :inventory="inventory" :addToCart="addToCart" />
 
-  <ShelfSidebar
+  <CartSidebar
     v-if="showSidebar"
     :toggle="toggleSidebar"
     :cart="cart"
@@ -29,12 +29,12 @@
 </template>
 
 <script>
-import ShelfSidebar from '@/components/ShelfSidebar.vue'
+import CartSidebar from '@/components/CartSidebar.vue'
 import food from '@/food.json'
 
 export default {
   components: {
-    ShelfSidebar
+    CartSidebar
   },
   data () {
     return {

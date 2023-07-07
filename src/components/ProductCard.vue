@@ -33,8 +33,11 @@
       </form>
     </div>
     <div class="card-footer">
-      <button @click="addToCart(product.name, quantity)" class="btn btn-light">
+      <button @click="addToCart(product.name, quantity)" class="btn btn-light margin">
         Add to cart
+      </button>
+      <button @click="resetData()" class="btn btn-light margin">
+        Reset data
       </button>
     </div>
   </div>
@@ -46,6 +49,11 @@ export default {
   data () {
     return {
       quantity: 0
+    }
+  },
+  methods: {
+    resetData () {
+      this.quantity = 0
     }
   }
 }

@@ -27,5 +27,7 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 todo list:
-* render images;
-* add online browser storage for the past orders.
+* render images in the ProductCard component; ✅
+* render images in the CartSidebar component;
+* add browser storage for the past orders page;
+* reset the quantity variable in the Products and Home pages.

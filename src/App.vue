@@ -53,7 +53,9 @@ export default {
   methods: {
     addToCart (name, quantity) {
       if (!this.cart[name]) this.cart[name] = 0
-      this.cart[name] += quantity
+      if (quantity > 0) {
+        this.cart[name] += quantity
+      }
     },
     toggleSidebar () {
       this.showSidebar = !this.showSidebar

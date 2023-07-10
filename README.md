@@ -3,7 +3,7 @@
 Online Greengrocery is a site based on a project developed by Gwen Faraday for a tutorial on VueJs:
 - <https://www.youtube.com/watch?v=FXpIoQ_rT_c>.
 
-### Project setup
+## Project setup
 ```
 npm install --legacy-peer-deps
 ```
@@ -32,3 +32,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [ ] add browser storage for the past orders page;
 - [ ] reset the quantity variable in the Products and Home pages;
 - [x] keep the quantity input from getting under 0.
+
+## Bibliography:
+
+For a clear explanation about the `app.use(...)` function, see:
+* <https://stackoverflow.com/questions/11321635/nodejs-express-what-is-app-use>;

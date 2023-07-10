@@ -1,9 +1,9 @@
 # online-greengrocery
 
 Online Greengrocery is a site based on a project developed by Gwen Faraday for a tutorial on VueJs:
-* <https://www.youtube.com/watch?v=FXpIoQ_rT_c>.
+- <https://www.youtube.com/watch?v=FXpIoQ_rT_c>.
 
-## Project setup
+### Project setup
 ```
 npm install --legacy-peer-deps
 ```
@@ -26,8 +26,9 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-todo list:
-* render images in the ProductCard component; ✅
-* render images in the CartSidebar component;
-* add browser storage for the past orders page;
-* reset the quantity variable in the Products and Home pages.
+## Todo list:
+- [x] render images in the ProductCard component;
+- [x] render images in the CartSidebar component;
+- [ ] add browser storage for the past orders page;
+- [ ] reset the quantity variable in the Products and Home pages;
+- [x] keep the quantity input from getting under 0.

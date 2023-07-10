@@ -12,7 +12,6 @@
         :index="index"
         :product="product"
         :addToCart="addToCart"
-        :resetData="resetData"
       />
     </div>
   </main>
@@ -23,7 +22,7 @@
 import ProductCard from '@/components/ProductCard.vue'
 
 export default {
-  props: ['inventory', 'addToCart', 'resetData'],
+  props: ['inventory', 'addToCart'],
   components: {
     ProductCard
   }

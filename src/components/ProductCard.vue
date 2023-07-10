@@ -27,7 +27,7 @@
             <label>Quantity:</label>
           </div>
           <div class="cell">
-            <input type="number" v-model.number="quantity">
+            <input type="number" min="0" v-model.number="quantity">
           </div>
         </div>
       </form>

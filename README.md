@@ -29,9 +29,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## Todo list:
 - [x] render images in the ProductCard component;
 - [x] render images in the CartSidebar component;
-- [ ] add browser storage for the past orders page;
-- [ ] reset the quantity variable in the Products and Home pages;
-- [x] keep the quantity input from getting under 0.
+- [ ] add browser or database storage for the past orders page;
+- [x] reset the quantity variable in the Products and Home pages once the products have been sold;
+- [x] keep the quantity input in the product cards from getting under 0.
 
 ## Bibliography:
 

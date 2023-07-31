@@ -19,7 +19,7 @@
           class="card"
           :index="index"
           :product="product"
-          :addToCart="addToCart"
+          @sell="addToCart"
         />
 
       </div>

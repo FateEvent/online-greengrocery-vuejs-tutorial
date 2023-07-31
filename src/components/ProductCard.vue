@@ -33,7 +33,8 @@
       </form>
     </div>
     <div class="card-footer">
-      <button @click="addToCart(product.name, quantity)" class="btn btn-light margin">
+      <!-- <button @click="addToCart(product.name, quantity)" class="btn btn-light margin"> -->
+        <button @click="emptyStock(product.name)" class="btn btn-light margin">
         Add to cart
       </button>
       <button @click="resetData()" class="btn btn-light margin">
@@ -44,16 +45,27 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
   props: ['product', 'index', 'addToCart'],
-  data () {
-    return {
-      quantity: 0
+  emits: ['sell'],
+  setup (props, { emit }) {
+    const quantity = ref(0)
+
+    function emptyStock (name) {
+      emit('sell', name, quantity.value)
+      resetData()
     }
-  },
-  methods: {
-    resetData () {
-      this.quantity = 0
+
+    function resetData () {
+      quantity.value = 0
+    }
+
+    return {
+      quantity,
+      emptyStock,
+      resetData
     }
   }
 }

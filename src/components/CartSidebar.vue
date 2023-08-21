@@ -40,7 +40,7 @@
         <p class="center" v-if="!Object.keys(cart).length"><em>No items in cart</em></p>
         <div class="spread">
           <span><strong>Total:</strong> ${{ calculateTotal() }}</span>
-          <button class="btn btn-light">Checkout</button>
+          <button @click="registerOrders" class="btn btn-light">Checkout</button>
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@
 
 <script>
 export default {
-  props: ['toggle', 'cart', 'inventory', 'remove'],
+  props: ['toggle', 'cart', 'inventory', 'remove', 'registerOrders'],
   methods: {
     getPrice (name) {
       const product = this.inventory.find((p) => {

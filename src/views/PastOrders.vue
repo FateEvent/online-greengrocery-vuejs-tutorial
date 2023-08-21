@@ -16,23 +16,61 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><i class="icofont-carrot icofont-4x" /></td>
-          <td>Carrot</td>
-          <td>$1.00</td>
-          <td>1</td>
-          <td>$1.00</td>
-          <td><button class="btn btn-dark">Add</button></td>
-        </tr>
-        <tr>
-          <td><i class="icofont-banana icofont-4x" /></td>
-          <td>Banana</td>
-          <td>$0.50</td>
-          <td>10</td>
-          <td>$5.00</td>
-          <td><button class="btn btn-dark">Add</button></td>
+        <tr v-for="(quantity, key, i) in pastOrders" :key="i">
+          <td><i :class="icon(key)"></i></td>
+          <td>{{ key }}</td>
+          <td>${{ price(key) }}</td>
+          <td class="center">{{ quantity }}</td>
+          <td>${{ quantity * price(key) }}</td>
         </tr>
       </tbody>
     </table>
   </main>
 </template>
+
+<script>
+import food from '@/food.json'
+
+export default {
+  data () {
+    return {
+      inventory: food,
+      pastOrders: {}
+    }
+  },
+  methods: {
+    retrievePastOrders () {
+      if (localStorage) {
+        const savedOrders = JSON.parse(localStorage.getItem('cart'))
+        if (savedOrders) {
+          this.pastOrders = savedOrders
+          console.log(this.pastOrders)
+        }
+      }
+    },
+    getPrice (name) {
+      const product = this.inventory.find((p) => {
+        return p.name === name
+      })
+      return product.price.USD
+    },
+    getIcon (name) {
+      const product = this.inventory.find((p) => {
+        return p.name === name
+      })
+      return product.icon
+    }
+  },
+  computed: {
+    icon: function () {
+      return (key) => `icofont-4x icofont-${this.getIcon(key)}`
+    },
+    price: function () {
+      return (key) => this.getPrice(key)
+    }
+  },
+  created () {
+    window.addEventListener('load', this.retrievePastOrders)
+  }
+}
+</script>

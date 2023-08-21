@@ -25,6 +25,7 @@
     :cart="cart"
     :inventory="inventory"
     :remove="removeItem"
+    :registerOrders="registerOrders"
   />
 </template>
 
@@ -40,7 +41,8 @@ export default {
     return {
       showSidebar: false,
       inventory: food,
-      cart: {}
+      cart: {},
+      pastOrders: {}
     }
   },
   computed: {
@@ -62,6 +64,12 @@ export default {
     },
     removeItem (name) {
       delete this.cart[name]
+    },
+    registerOrders () {
+      if (localStorage) {
+        localStorage.setItem('cart', JSON.stringify(this.cart))
+        console.log(JSON.parse(localStorage.getItem('cart')))
+      }
     }
   }
 }

@@ -63,7 +63,7 @@ export default {
   },
   computed: {
     icon: function () {
-      return (key) => `icofont-4x icofont-${this.getIcon(key)}`
+      return (key) => `icofont-2x icofont-${this.getIcon(key)}`
     },
     price: function () {
       return (key) => this.getPrice(key)

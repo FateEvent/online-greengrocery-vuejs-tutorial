@@ -41,8 +41,7 @@ export default {
     return {
       showSidebar: false,
       inventory: food,
-      cart: {},
-      pastOrders: {}
+      cart: {}
     }
   },
   computed: {
@@ -68,7 +67,6 @@ export default {
     registerOrders () {
       if (localStorage) {
         localStorage.setItem('cart', JSON.stringify(this.cart))
-        console.log(JSON.parse(localStorage.getItem('cart')))
       }
     }
   }

@@ -8,9 +8,12 @@
       <router-link to="/actual-products" class="top-bar-link">
         <span>Products</span>
       </router-link>
-      <router-link to="/past-orders" class="top-bar-link">
+      <a href="/past-orders" class="top-bar-link">
         <span>Past Orders</span>
-      </router-link>
+      </a>
+      <!-- <router-link to="/past-orders" class="top-bar-link">
+        <span>Past Orders</span>
+      </router-link> -->
     </nav>
     <div @click="toggleSidebar" class="top-bar-cart-link">
       <i class="icofont-cart-alt icofont-1x"></i>
@@ -61,12 +64,39 @@ export default {
     }
   },
   methods: {
+    registerOrders () {
+      if (localStorage) {
+        const tmpObj = { ...this.pastOrders }
+        for (const [key1, value1] of Object.entries(tmpObj)) {
+          for (const [key2, value2] of Object.entries(this.cart)) {
+            if (key1 === key2) {
+              tmpObj[key1] = value1 + value2
+            }
+          }
+        }
+        const savedOrders = { ...this.cart, ...tmpObj }
+        localStorage.setItem('pastOrders', JSON.stringify(savedOrders))
+        location.reload()
+      }
+    },
     retrievePastOrders () {
+      if (localStorage) {
+        const savedOrders = JSON.parse(localStorage.getItem('pastOrders'))
+        if (savedOrders) {
+          this.pastOrders = savedOrders
+        }
+      }
+    },
+    registerCart () {
+      if (localStorage) {
+        localStorage.setItem('cart', JSON.stringify(this.cart))
+      }
+    },
+    retrieveCart () {
       if (localStorage) {
         const savedOrders = JSON.parse(localStorage.getItem('cart'))
         if (savedOrders) {
-          this.pastOrders = { ...this.pastOrders, ...savedOrders }
-          console.log(this.pastOrders)
+          this.cart = savedOrders
         }
       }
     },
@@ -74,18 +104,15 @@ export default {
       if (quantity > 0) {
         if (!this.cart[name]) this.cart[name] = 0
         this.cart[name] += quantity
+        this.registerCart()
       }
-    },
-    toggleSidebar () {
-      this.showSidebar = !this.showSidebar
     },
     removeItem (name) {
       delete this.cart[name]
+      this.registerCart()
     },
-    registerOrders () {
-      if (localStorage) {
-        localStorage.setItem('cart', JSON.stringify(this.cart))
-      }
+    toggleSidebar () {
+      this.showSidebar = !this.showSidebar
     },
     getPrice (name) {
       const product = this.inventory.find((p) => {
@@ -102,6 +129,11 @@ export default {
   },
   created () {
     window.addEventListener('load', this.retrievePastOrders)
+    window.addEventListener('load', this.retrieveCart)
+  },
+  mounted () {
+    window.addEventListener('load', this.retrievePastOrders)
+    window.addEventListener('load', this.retrieveCart)
   }
 }
 </script>

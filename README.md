@@ -32,9 +32,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [x] reset the quantity variable in the Products and Home pages once the products have been sold;
 - [x] keep the quantity input in the product cards from getting under 0;
 - [x] add browser or database storage for the past orders page;
-- [x] add a function to merge the pastOrders and the cart arrays before record in the local storage;
-- [ ] find a way to update the PastOrders page in order to have te past orders from the start;
-- [ ] find a way to import the getPrice and getIcon functions instead of repeating them in PastOrders.vue.
+- [x] add a function to merge the pastOrders and the cart arrays before registration in the local storage;
+- [x] find a way to update the PastOrders page in order to have the past orders from the start;
+- [x] find a way to import the getPrice and getIcon functions instead of repeating them in PastOrders.vue.
+
 ## Bibliography:
 
 For a clear explanation about the `app.use(...)` function, see:

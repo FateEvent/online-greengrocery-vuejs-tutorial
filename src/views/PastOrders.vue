@@ -29,12 +29,11 @@
 </template>
 
 <script>
-import food from '@/food.json'
-
 export default {
+//   props: ['inventory', 'pastOrders'],
+  props: ['inventory'],
   data () {
     return {
-      inventory: food,
       pastOrders: {}
     }
   },

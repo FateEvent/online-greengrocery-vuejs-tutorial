@@ -17,7 +17,7 @@
       <span>Cart ({{ totalQuantity }})</span>
     </div>
   </header>
-  <router-view :inventory="inventory" :addToCart="addToCart" />
+  <router-view :inventory="inventory" :addToCart="addToCart" :pastOrders="pastOrders" />
 
   <CartSidebar
     v-if="showSidebar"
@@ -42,6 +42,7 @@ export default {
       showSidebar: false,
       inventory: food,
       cart: {}
+    //   pastOrders: {}
     }
   },
   computed: {
@@ -52,6 +53,15 @@ export default {
     }
   },
   methods: {
+    // retrievePastOrders () {
+    //   if (localStorage) {
+    //     const savedOrders = JSON.parse(localStorage.getItem('cart'))
+    //     if (savedOrders) {
+    //       this.pastOrders = { ...this.pastOrders, savedOrders }
+    //       console.log(this.pastOrders)
+    //     }
+    //   }
+    // },
     addToCart (name, quantity) {
       if (quantity > 0) {
         if (!this.cart[name]) this.cart[name] = 0

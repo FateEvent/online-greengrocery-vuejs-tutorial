@@ -49,20 +49,8 @@
 
 <script>
 export default {
-  props: ['toggle', 'cart', 'inventory', 'remove', 'registerOrders'],
+  props: ['toggle', 'cart', 'inventory', 'remove', 'registerOrders', 'getPrice', 'getIcon'],
   methods: {
-    getPrice (name) {
-      const product = this.inventory.find((p) => {
-        return p.name === name
-      })
-      return product.price.USD
-    },
-    getIcon (name) {
-      const product = this.inventory.find((p) => {
-        return p.name === name
-      })
-      return product.icon
-    },
     calculateTotal () {
       const total = Object.entries(this.cart).reduce((acc, curr, index) => {
         return acc + (curr[1] * this.getPrice(curr[0]))

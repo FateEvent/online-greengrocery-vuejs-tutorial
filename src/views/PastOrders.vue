@@ -17,11 +17,11 @@
       </thead>
       <tbody>
         <tr v-for="(quantity, key, i) in pastOrders" :key="i">
-          <td><i :class="icon(key)"></i></td>
+          <td><i :class="`icofont-3x icofont-` + getIcon(key)"></i></td>
           <td>{{ key }}</td>
-          <td>${{ price(key) }}</td>
+          <td>${{ getPrice(key) }}</td>
           <td class="center">{{ quantity }}</td>
-          <td>${{ quantity * price(key) }}</td>
+          <td>${{ quantity * getPrice(key) }}</td>
         </tr>
       </tbody>
     </table>
@@ -30,46 +30,6 @@
 
 <script>
 export default {
-//   props: ['inventory', 'pastOrders'],
-  props: ['inventory'],
-  data () {
-    return {
-      pastOrders: {}
-    }
-  },
-  methods: {
-    retrievePastOrders () {
-      if (localStorage) {
-        const savedOrders = JSON.parse(localStorage.getItem('cart'))
-        if (savedOrders) {
-          this.pastOrders = savedOrders
-          console.log(this.pastOrders)
-        }
-      }
-    },
-    getPrice (name) {
-      const product = this.inventory.find((p) => {
-        return p.name === name
-      })
-      return product.price.USD
-    },
-    getIcon (name) {
-      const product = this.inventory.find((p) => {
-        return p.name === name
-      })
-      return product.icon
-    }
-  },
-  computed: {
-    icon: function () {
-      return (key) => `icofont-2x icofont-${this.getIcon(key)}`
-    },
-    price: function () {
-      return (key) => this.getPrice(key)
-    }
-  },
-  created () {
-    window.addEventListener('load', this.retrievePastOrders)
-  }
+  props: ['inventory', 'pastOrders', 'getIcon', 'getPrice']
 }
 </script>

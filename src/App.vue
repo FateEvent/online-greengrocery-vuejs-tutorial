@@ -17,7 +17,13 @@
       <span>Cart ({{ totalQuantity }})</span>
     </div>
   </header>
-  <router-view :inventory="inventory" :addToCart="addToCart" :pastOrders="pastOrders" />
+  <router-view
+    :inventory="inventory"
+    :addToCart="addToCart"
+    :getPrice="getPrice"
+    :getIcon="getIcon"
+    :pastOrders="pastOrders"
+  />
 
   <CartSidebar
     v-if="showSidebar"
@@ -26,6 +32,8 @@
     :inventory="inventory"
     :remove="removeItem"
     :registerOrders="registerOrders"
+    :getPrice="getPrice"
+    :getIcon="getIcon"
   />
 </template>
 
@@ -41,8 +49,8 @@ export default {
     return {
       showSidebar: false,
       inventory: food,
-      cart: {}
-    //   pastOrders: {}
+      cart: {},
+      pastOrders: {}
     }
   },
   computed: {
@@ -53,15 +61,15 @@ export default {
     }
   },
   methods: {
-    // retrievePastOrders () {
-    //   if (localStorage) {
-    //     const savedOrders = JSON.parse(localStorage.getItem('cart'))
-    //     if (savedOrders) {
-    //       this.pastOrders = { ...this.pastOrders, savedOrders }
-    //       console.log(this.pastOrders)
-    //     }
-    //   }
-    // },
+    retrievePastOrders () {
+      if (localStorage) {
+        const savedOrders = JSON.parse(localStorage.getItem('cart'))
+        if (savedOrders) {
+          this.pastOrders = { ...this.pastOrders, ...savedOrders }
+          console.log(this.pastOrders)
+        }
+      }
+    },
     addToCart (name, quantity) {
       if (quantity > 0) {
         if (!this.cart[name]) this.cart[name] = 0
@@ -78,7 +86,22 @@ export default {
       if (localStorage) {
         localStorage.setItem('cart', JSON.stringify(this.cart))
       }
+    },
+    getPrice (name) {
+      const product = this.inventory.find((p) => {
+        return p.name === name
+      })
+      return product.price.USD
+    },
+    getIcon (name) {
+      const product = this.inventory.find((p) => {
+        return p.name === name
+      })
+      return product.icon
     }
+  },
+  created () {
+    window.addEventListener('load', this.retrievePastOrders)
   }
 }
 </script>
